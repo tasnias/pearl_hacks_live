@@ -1,0 +1,26 @@
+$body-font-family: 'Proxima Nova';
+$heading-font-family: 'Caviar Dreams';
+$primary-color: #3ea381;
+$secondary-color: #d86c91;
+$accent-color: #fbccd4;
+$error-color: #FF5252;
+$info-color: #c7f0c3;
+$success-color: #3ea381;
+$warning-color: #FFC107;
+
+$bodyOptions: body-1, body-2, caption, overline;
+$titleOptions: display-4, display-3, display-2, display-1, headline, title, subtitle-1, subtitle-2;
+#app {
+  font-family: $body-font-family, sans-serif !important;
+  @each $option in $titleOptions {
+    .#{$option} {
+      font-family: $heading-font-family, sans-serif !important;
+    }
+  }
+
+  @each $option in $bodyOptions {
+    .#{$option} {
+      font-family: $body-font-family, sans-serif !important;
+    }
+  }
+}
