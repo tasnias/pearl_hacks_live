@@ -1,7 +1,7 @@
 import fetchData from "./sheets_to_json";
 
 export default class FaqService {
-  getAllFaqs() {
+  getAllFAQs() {
     const sheetID = "1BGIwq8YTtXVaFZjRDPbZcZNe06KYFepPu3CG1lvyVpM";
     let response = [];
 

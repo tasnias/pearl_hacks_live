@@ -36,41 +36,25 @@
     </v-card-text>
   </div>
 </template>
-
 <script>
 import AuthService from "../../services/auth_service";
-
+import baseurl from "../../config/urls";
 export default {
   name: "SignInOrRegister",
-  computed: {
-    user() {
-      return this.$store.getters.getCurrentUser;
-    }
-  },
-  watch: {
-    user(val) {
-    console.log(val)
-    if (val != null) {
-        this.$router.push({ name: "Dashboard" });
-      }
-    }
-  },
   methods: {
     sendSignInLinkIfValid() {
       if (this.$refs.form.validate()) {
         let actionCodeSettings = {
-          // TODO(tasnias): Fix redirect link for prod.
           // URL you want to redirect back to. The domain (www.example.com) for this
           // URL must be whitelisted in the Firebase Console.
-          url: "http://localhost:8080/#/auth/finish",
-          // This must be true.
+          url: `${baseurl}/dashboard`,
           handleCodeInApp: true
         };
         let email = this.email;
         this.authService
           .sendSignInEmailLink(email, actionCodeSettings)
           .then(() => {
-            window.localStorage.setItem("emailForSignIn", email);
+            window.localStorage.setItem("email", email);
             this.$router.push("/auth/link_sent");
           })
           .catch(error => {

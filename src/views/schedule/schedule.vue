@@ -1,17 +1,21 @@
 <template>
   <div>
-    <h2 class="heading py-3 pb-2 text-center">
+    <h1 class="heading py-5 text-center">
       Schedule
-    </h2>
-    <main class="pt-1 pb-5">
-      <v-tabs fixed-tabs show-arrows class="grey lighten-5">
-        <v-tab>
-          Events Schedule
+    </h1>
+    <v-tabs show-arrows class="mt-n5">
+        <v-tab :to="{ name: 'EventsSchedule' }">
+          Events
         </v-tab>
-        <v-tab>
+        <v-tab :to="{ name: 'Workshops' }">
           Workshops
         </v-tab>
       </v-tabs>
+      <v-divider></v-divider>
+    <main class="pb-5">
+      
+
+      <router-view />
     </main>
   </div>
 </template>
@@ -25,5 +29,9 @@ export default {
 <style lang="scss" scope>
 .theme--light.v-tabs > .v-tabs-bar {
   background-color: transparent !important;
+}
+
+.v-tab {
+  font-weight: 600 !important;
 }
 </style>

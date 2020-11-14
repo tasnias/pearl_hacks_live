@@ -1,3 +1,43 @@
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("~@/assets/fonts/Proxima Nova Thin.otf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("~@/assets/fonts/ProximaNova-Regular.otf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("~@/assets/fonts/Proxima Nova Bold.otf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("~@/assets/fonts/Proxima Nova Black.otf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("~@/assets/fonts/Proxima Nova Extrabold.otf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Caviar Dreams";
+  src: url("~@/assets/fonts/CaviarDreams.ttf");
+}
+
+@font-face {
+  font-family: "Caviar Dreams";
+  src: url("~@/assets/fonts/CaviarDreams_Bold.ttf");
+  font-weight: bold;
+}
 $body-font-family: 'Proxima Nova';
 $heading-font-family: 'Caviar Dreams';
 $primary-color: #3ea381;
@@ -10,6 +50,9 @@ $warning-color: #FFC107;
 
 $bodyOptions: body-1, body-2, caption, overline;
 $titleOptions: display-4, display-3, display-2, display-1, headline, title, subtitle-1, subtitle-2;
+
+$borderColor:  rgba(0,0,0,.12);;
+
 #app {
   font-family: $body-font-family, sans-serif !important;
   @each $option in $titleOptions {

@@ -11,6 +11,8 @@
     "@mdi/font": "^3.6.95",
     "core-js": "^2.6.5",
     "firebase": "^7.22.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.31",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

@@ -1,6 +1,7 @@
 import fetchData from "./sheets_to_json";
 import firebase from "firebase";
 
+// TODO: REFACTOR THIS BITCH
 export default class AuthService {
   getAllSponsors() {
     return fetchData("1biudrolhcYpl1ldsUFrGwR38bS3UaBWApW-ui1x1Gvc", "1");

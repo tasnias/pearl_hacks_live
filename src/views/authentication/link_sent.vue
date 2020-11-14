@@ -14,59 +14,60 @@
       <v-spacer></v-spacer>
     </v-card-title>
     <v-card-text>
-      We've emailed you a link to complete the sign in and/or registration
-      process for Pearl Hacks 2021. Please use the link in the email to access
-      the live site. Make sure to check your spam folder if you can't find the
-      email.
+      <p>
+        We've emailed {{ email }} a link to complete the sign in and/or
+        registration process for access to the live site.
+      </p>
+      <p>Make sure to check your spam folder if you can't find the email.</p>
       <v-alert
         border="left"
         color="primary"
         outlined
         type="warning"
         class="mt-3"
-        >The link we've sent is only valid <b>once</b>. To sign in again,
-        generate a new link by re-entering your email in the
-        <router-link to="/auth">sign in</router-link> page.
+        >The sent link is only valid <b>once</b> and for a limited time. To sign
+        in again, generate a new link by re-entering your email in the
+        <router-link to="/auth/sign_in_or_register" class="underline"
+          >sign in</router-link
+        >
+        page.
       </v-alert>
     </v-card-text>
   </div>
 </template>
 
 <script>
+// TODO: Add watch on store.user; if it changes to !null, redirect
 export default {
   name: "LinkSent",
-  methods: {
-    back: function() {
-      this.$router.push("/auth");
-    }
-  },
   watch: {
-    user(val) {
-      // if the user value changes on this page
-      // it means the user signed in or out on
-      // another page and we must handle accordingly.
-      if (val) {
-        // redirect to dashboard
-        this.$router.push({ name: "Dashboard" });
-      } else {
-        // go back to sign in page
-        this.$router.push({ name: "SignInOrRegister" });
+    watch: {
+      user(val) {
+        console.log(val);
+        if (val != null) {
+          this.$router.push({ name: "Dashboard" });
+        }
       }
     }
   },
   computed: {
+    // If the user signs out in another tab, navigate away
     user() {
       return this.$store.getters.getCurrentUser;
     }
   },
-  data: () => ({
-    rules: {
-      required: value => !!value || "Required",
-      email: value => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(value) || "Invalid e-mail";
-      }
+  methods: {
+    back: function() {
+      this.$router.push({ name: "SignInOrRegister" });
     }
+  },
+  data: () => ({
+    email: window.localStorage.getItem("email")
   })
 };
 </script>
+<style lang="scss" scope>
+.underline {
+  text-decoration: underline;
+}
+</style>

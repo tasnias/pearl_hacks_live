@@ -31,7 +31,14 @@
           :rules="[rules.required]"
         ></v-text-field>
         <div class="px-2 pb-3">
-          <a>Forgot password?</a>
+          <p>
+            <a>Forgot password?</a>
+          </p>
+          <p>
+            <router-link to="/auth/sign_in_or_register"
+              >User passwordless authentication.</router-link
+            >
+          </p>
         </div>
         <div class="d-flex justify-space-between">
           <v-btn
@@ -93,7 +100,7 @@ export default {
   },
   data: () => ({
     rules: {
-      required: value => !!value || "Required",
+      required: value => !!value || "",
       email: value => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(value) || "Invalid e-mail";

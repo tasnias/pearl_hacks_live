@@ -1,12 +1,14 @@
 <template>
-  <v-card rounded class="rounded-lg elevated">
+  <v-card rounded class="rounded-xl elevated">
     <v-card-title class="d-flex justify-center"
       >Time Until Submission</v-card-title
     >
     <v-card-text>
-      {{ days }} {{ wordString.day }} {{ hours }} {{ wordString.hours }}
-      {{ minutes }} {{ wordString.minutes }} {{ seconds }}
-      {{ wordString.seconds }}</v-card-text
+      <h2 class="text-center">
+        {{ days }}{{ wordString.day }} {{ hours }}{{ wordString.hours }}
+        {{ minutes }}{{ wordString.minutes }} {{ seconds
+        }}{{ wordString.seconds }}
+      </h2></v-card-text
     >
     <v-card-actions
       ><v-btn depressed rounded color="primary" small
@@ -20,7 +22,8 @@ export default {
   name: "TimeUntilSubmission",
   computed: {
     endtime() {
-      return new Date("Febuary 13, 2021 22:00:00").getTime();
+      // TODO: GET THIS IN UTC-0
+      return new Date("Febuary 21, 2021 12:00:00").getTime();
     },
     starttime() {
       return Date.now();
@@ -29,10 +32,10 @@ export default {
   data: () => ({
     timer: "",
     wordString: {
-      day: "Days",
-      hours: "Hours",
-      minutes: "Minutes",
-      seconds: "Seconds"
+      day: "d",
+      hours: "h",
+      minutes: "m",
+      seconds: "s"
     },
     start: "",
     end: "",

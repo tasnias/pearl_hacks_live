@@ -1,16 +1,14 @@
 <template>
   <div>
-    <h2 class="heading py-3 pb-2 text-center">
+    <h1 class="heading pt-5 text-center">
       Attendee Directory
-    </h2>
-    <main class="pb-5 pt-5">
+    </h1>
+    <main class="pb-5">
       <v-data-table
         :headers="headers"
         :items="users"
         :search="search"
-        item-key="name"
-        hide-default-footer
-        class="elevated rounded-xl"
+        class="elevation-0 rounded-xl"
       >
         <template v-slot:top>
           <v-text-field
@@ -56,7 +54,7 @@ export default {
           text: "Last Name",
           value: "lastname"
         },
-        { text: "Email", value: "email" },
+        { text: "Discord", value: "discord" },
         { text: "Role", value: "role" },
         { text: "School/Company", value: "organization" }
       ],

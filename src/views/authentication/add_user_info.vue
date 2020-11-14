@@ -1,6 +1,14 @@
 <template>
   <div>
     <v-card-title class="d-flex justify-center font-weight-bold">
+       <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on" @click="back">
+            mdi-arrow-left
+          </v-icon>
+        </template>
+        <span>Sign in page</span>
+      </v-tooltip>
       <v-spacer></v-spacer>
       Add or Edit Information
       <v-spacer></v-spacer>
@@ -68,7 +76,7 @@
           filled
           :rules="[rules.required]"
         ></v-text-field>
-        <v-autocomplete
+        <!-- <v-autocomplete
           v-model="organization"
           :label="organization_label[role]"
           :items="organization_options[role]"
@@ -88,8 +96,24 @@
           filled
           rounded
           :rules="[rules.required]"
+        ></v-text-field> -->
+        <v-text-field
+          v-model="organization"
+          :label="organization_label[role]"
+          color="primary"
+          dense
+          filled
+          rounded
+          :rules="[rules.required]"
         ></v-text-field>
-
+        <v-text-field
+          v-model="discord"
+          label="Discord Username"
+          color="primary"
+          dense
+          filled
+          rounded
+        ></v-text-field>
         <div class="d-flex justify-end">
           <v-btn
             color="primary"
@@ -112,7 +136,7 @@ import firebase from "firebase";
 export default {
   name: "AddUserInfo",
   beforeCreate() {
-    // find user in attendees spreadsheet if it exists
+    // find user in registrants spreadsheet if it exists
 
     // get sponsor list
     this.$store.dispatch("loadSponsorList");
@@ -131,14 +155,15 @@ export default {
   },
   methods: {
     back() {
+      
       this.$router.push("/auth");
     },
     async createUser() {
       if (this.$refs.form.validate()) {
-        let organization =
-          this.organization != "Other"
-            ? this.organization
-            : this.organization_other;
+        // let organization =
+        //   this.organization != "Other"
+        //     ? this.organization
+        //     : this.organization_other;
         let document = await firebase
           .firestore()
           .collection("users")
@@ -154,9 +179,10 @@ export default {
             lastname: this.lastname,
             email: this.email,
             role: this.role,
+            discord: this.discord,
             created: new Date().toISOString(),
             updated: new Date().toISOString(),
-            organization,
+            organization: this.organization,
             isJudge: false
           };
           await document.ref.set(
@@ -185,13 +211,14 @@ export default {
     lastname: "",
     role: "Hacker",
     organization: "",
-    organization_other: null,
+    // organization_other: null,
     grad_year: null,
     organization_label: {
       Hacker: "School",
       "Sponsor Representative": "Organization or Company",
       "Non-sponsor Mentor": "Organization, Company, or School"
-    }
+    },
+    discord: ""
   })
 };
 </script>
